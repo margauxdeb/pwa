@@ -1,3 +1,14 @@
+self.addEventListener('install', function(e) {
+ e.waitUntil(
+   caches.open('tinyPWA').then(function(cache) {
+     return cache.addAll([
+       '/',
+       '/index.html'
+     ]);
+   })
+ );
+});
+
 self.addEventListener('fetch', function(event) {
   console.log(event.request.url);
   event.respondWith(
